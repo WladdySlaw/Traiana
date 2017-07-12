@@ -1,0 +1,217 @@
+//************************ MIXINS **************************
+=placeholder
+  &::-webkit-input-placeholder
+    @content
+  &:-moz-placeholder
+    @content
+  &::-moz-placeholder
+    @content
+  &:-ms-input-placeholder
+    @content
+
+%clearfix
+  *zoom: 1
+  &:before, &:after
+    display: table
+    content: " "
+  &:after
+    clear: both
+
+@mixin bp-1366-plus
+  @media (min-width: 1366px)
+    @content
+
+@mixin bp-1450
+  @media (max-width: 1450px)
+    @content
+
+@mixin bp-960
+  @media (max-width: 960px)
+    @content
+
+@mixin bp-768
+  @media (max-width: 768px)
+    @content
+
+@mixin bp-550
+  @media (max-width: 550px)
+    @content
+
+@mixin bp-480
+  @media (max-width: 480px)
+    @content
+
+@mixin bp-400
+  @media (max-width: 400px)
+    @content
+
+//************************ OVERALL *************************
+
+.container
+    @extend %clearfix
+    max-width: 940px
+    margin: auto
+    width: 100%
+.right
+    float: right
+.left
+    float: left
+.center
+    position: relative
+    left: 50%
+    transform: translateX(-50%)
+.text-center
+    text-align: center
+.text-left
+    text-align: left
+.text-right
+    text-align: right
+
+.cup
+    cursor: pointer
+.cup-none
+    pointer-events: none
+
+//************************ MARGINS *************************
+@for $i from 1 through 30
+  .#{m-t}-#{$i}
+    margin-top: 0px + $i
+
+@for $i from 1 through 30
+  .#{m-b}-#{$i}
+    margin-bottom: 0px + $i
+
+//************************ PADDINGS *************************
+@for $i from 1 through 30
+  .#{p-t}-#{$i}
+    margin-top: 0px + $i
+
+@for $i from 1 through 30
+  .#{p-b}-#{$i}
+    margin-bottom: 0px + $i
+
+//************************ BEM_BLOCKS *************************
+    
+.c-title
+    font-family: $montserrat
+    letter-spacing: 3px
+    font-size: 50px
+
+.c-btn
+    background-color: transparent
+    text-transform: uppercase
+    font-family: $montserrat
+    border: 1px solid #000
+    letter-spacing: 1px 
+    padding: 15px 30px
+    border-radius: 2px
+    min-width: 180px
+    font-size: 14px
+    transition: .5s
+    cursor: pointer
+    &:focus
+        outline: none
+    &:hover
+        background-color: #000
+        color: #fff
+
+.c-form
+    box-shadow: 0 3px 9px rgba(0,0,0,.5)
+    border: 1px solid rgba(0,0,0,.2)
+    border-radius: 6px
+    margin: 25px auto
+    padding: 30px
+    width: 600px
+    @include bp-768
+        width: calc(100% - 80px)
+    &__title
+        text-align: center
+        font-family: $montserrat
+        font-size: 25px
+        margin-bottom: 30px
+    .c-btn
+        margin-top: 20px
+.c-check
+    margin: 15px 0
+    label
+        font-family: $montserrat
+        font-size: 15px
+        padding-top: 2px
+
+    [type="checkbox"]:not(:checked),
+    [type="checkbox"]:checked 
+        position: absolute
+        left: -9999px
+
+    [type="checkbox"]:not(:checked) + label,
+    [type="checkbox"]:checked + label
+        position: relative
+        padding-left: 1.95em
+        cursor: pointer
+
+    [type="checkbox"]:not(:checked) + label:before,
+    [type="checkbox"]:checked + label:before 
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        width: 1.25em
+        height: 1.25em
+        border: 2px solid #e2e2e2
+        background: #fff
+        border-radius: 4px
+        box-shadow: inset 0 1px 3px rgba(0,0,0,.1)
+
+    [type="checkbox"]:not(:checked) + label:after,
+    [type="checkbox"]:checked + label:after 
+        content: '✔'
+        position: absolute
+        top: .1em 
+        left: .3em
+        font-size: 1.3em
+        line-height: 0.8
+        color: #000
+        transition: all .2s
+
+
+    [type="checkbox"]:not(:checked) + label:after 
+        opacity: 0
+        transform: scale(0)
+
+    [type="checkbox"]:checked + label:after 
+        opacity: 1
+        transform: scale(1)
+
+
+    [type="checkbox"]:disabled:not(:checked) + label:before,
+    [type="checkbox"]:disabled:checked + label:before 
+        box-shadow: none
+        border-color: #e2e2e2
+        background-color: #ddd
+    [type="checkbox"]:disabled:checked + label:after 
+        color: #000
+    [type="checkbox"]:disabled + label 
+        color: #aaa
+    
+    [type="checkbox"]:checked:focus + label:before,
+    [type="checkbox"]:not(:checked):focus + label:before
+        border: 2px dotted #e2e2e2
+
+.c-text
+    label
+        font-family: $montserrat
+    input
+        margin: 10px 0
+        width: calc(100% - 40px)
+        height: 40px
+        border: solid 1px #e2e2e2
+        -webkit-border-radius: 3px
+        border-radius: 3px
+        font-family: $montserrat
+        font-size: 15px
+        color: #2c2c2c
+        padding: 0 20px
+        &:focus
+            outline: 0
+    
+
